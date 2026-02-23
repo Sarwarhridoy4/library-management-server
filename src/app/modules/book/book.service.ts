@@ -1,7 +1,7 @@
 // src/modules/book/book.service.ts
 import { IBookBase, IBookDocument } from "./book.interface";
 import { Book } from "./book.model";
-import { FilterQuery } from "mongoose";
+import type { QueryFilter } from "mongoose";
 import { IBookQuery } from "./book.types";
 
 export const createBook = async (payload: IBookBase) => {
@@ -10,7 +10,7 @@ export const createBook = async (payload: IBookBase) => {
 };
 
 export const getBooks = async (query: IBookQuery) => {
-  const filter: FilterQuery<IBookDocument> = {};
+  const filter: QueryFilter<IBookDocument> = {};
   if (query.filter) filter.genre = query.filter;
 
   const sortBy = query.sortBy || "createdAt";
